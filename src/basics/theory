@@ -1,0 +1,35 @@
+
+### Implementing `Runnable`:
+- **Flexibility: Can implement `Runnable` and extend another class.
+- **Reusability: Same `Runnable` can be used with multiple threads.
+- **Separation of Concerns**: Better separation of task and thread behavior.
+
+### Extending `Thread`:
+- **Direct Control: Inherits from `Thread`, less flexibility.
+- **Simplicity: Easier for simpler cases where task and thread are closely tied.
+- **Single Inheritance**: Cannot extend other classes.
+
+### Key Difference:
+- **`Runnable`**: Task definition (separate from thread).
+- **`Thread`**: Task definition and thread management combined.
+
+### `join()` Method:
+- The `join()` method in Java is used to pause the execution of the current thread until the thread it is called on has finished executing.
+- When one thread calls `join()` on another thread, the calling thread will wait until the other thread completes.
+
+### How `join()` Can Help with Main Thread Priority:
+- **Synchronization**: `join()` ensures that the main thread (or any other thread) waits for other threads to finish before continuing.
+- **Order of Execution**: By calling `join()` on a thread, you can control the order in which threads finish their execution, making sure the main thread doesn't proceed until the other threads have completed their work.
+- **Main Thread Priority**: Using `join()`, you can ensure that the main thread (or any other thread) runs only after other threads finish, helping manage task dependencies.
+
+### Key Points:
+- **`join()` blocks** the calling thread until the target thread finishes.
+- **Main thread priority**: Using `join()`, the main thread can wait for other threads to complete, preventing premature termination of the program.
+
+Main Thread Priority in Java:
+In Java, main thread priority refers to the priority of the thread that runs the main() method, which is the entry point of the program. Java threads, including the main thread, have a priority that determines the order of execution relative to other threads. Thread priorities are defined as integer values between Thread.MIN_PRIORITY (1) and Thread.MAX_PRIORITY (10), with a default priority of Thread.NORM_PRIORITY (5).
+
+Key Points:
+Main Thread Priority: By default, the main thread has a normal priority (Thread.NORM_PRIORITY), which can be changed using Thread.setPriority().
+Thread Scheduling: The operating system's thread scheduler decides which thread to run based on priority, but it does not guarantee a strict priority order.
+Priority Range: Main thread priority can be set from 1 (lowest) to 10 (highest), but the OS may not always respect thread priority exactly.

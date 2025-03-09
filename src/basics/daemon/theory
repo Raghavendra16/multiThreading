@@ -1,0 +1,33 @@
+### Daemon Threads in Java:
+
+- **Background Tasks**: Daemon threads run in the background and provide services to user threads.
+- **JVM Termination**: The JVM exits as soon as all non-daemon threads finish, even if daemon threads are still running.
+- **Low Priority**: Daemon threads are typically lower in priority than user threads.
+- **Automatic Termination**: Daemon threads are terminated when no non-daemon threads remain.
+
+### Setting a Daemon Thread:
+- Use `Thread.setDaemon(true)` before starting the thread.
+
+### Example:
+```java
+class MyDaemonThread extends Thread {
+    public void run() {
+        while (true) {
+            System.out.println("Daemon thread running...");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyDaemonThread daemon = new MyDaemonThread();
+        daemon.setDaemon(true);  // Set as daemon
+        daemon.start();
+
+        // Main thread work
+        System.out.println("Main thread finished.");
+    }
+}
+```
+
+- **Key Point**: Daemon threads are useful for background work, but they don’t prevent JVM shutdown.
